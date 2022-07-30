@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<ProgressBar>(R.id.progressBar).visibility = View.VISIBLE
 
         val url = "https://meme-api.herokuapp.com/gimme"
-
+        // Request a string response from the provided URL.
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null, { response ->
             memeImage = response.getString("url")
             Glide.with(this).load(memeImage).listener(object : RequestListener<Drawable> {
@@ -59,6 +59,8 @@ class MainActivity : AppCompatActivity() {
         },
             { Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show() }
         )
+
+    // Add the request to the RequestQueue.
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
 
