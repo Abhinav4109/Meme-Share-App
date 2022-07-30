@@ -17,7 +17,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
 class MainActivity : AppCompatActivity() {
-    private var memeImage: String? = null
+    var memeImage: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -64,13 +64,13 @@ class MainActivity : AppCompatActivity() {
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
 
-    fun shareMeme() {
+    fun shareMeme(view: View) {
         val i = Intent(Intent.ACTION_SEND)
         i.type = "text/plain"
         i.putExtra(Intent.EXTRA_TEXT, "Hi, checkout this meme $memeImage")
         startActivity(Intent.createChooser(i, "Share this meme with...."))
     }
-    fun nextMeme() {
+    fun nextMeme(view: View) {
         loadMeme()
     }
 }
