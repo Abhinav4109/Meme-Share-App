@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
+
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -17,7 +17,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
 class MainActivity : AppCompatActivity() {
-    var memeImage: String? = null
+    private var memeImage: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -62,13 +62,13 @@ class MainActivity : AppCompatActivity() {
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
 
-    fun shareMeme(view: View) {
+    fun shareMeme() {
         val i = Intent(Intent.ACTION_SEND)
         i.type = "text/plain"
         i.putExtra(Intent.EXTRA_TEXT, "Hi, checkout this meme $memeImage")
         startActivity(Intent.createChooser(i, "Share this meme with...."))
     }
-    fun nextMeme(view: View) {
+    fun nextMeme() {
         loadMeme()
     }
 }
